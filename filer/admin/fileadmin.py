@@ -51,7 +51,6 @@ class FileAdmin(PrimitivePermissionAwareModelAdmin):
             )
         return fieldsets
 
-
     def response_change(self, request, obj):
         """
         Overrides the default to be able to forward to the directory listing
