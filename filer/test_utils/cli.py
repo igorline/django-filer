@@ -12,6 +12,7 @@ else:
 
 urlpatterns = []
 
+
 def configure(**extra):
     from django.conf import settings
     os.environ['DJANGO_SETTINGS_MODULE'] = 'filer.test_utils.cli'
@@ -52,6 +53,8 @@ def configure(**extra):
         extra['SOUTH_MIGRATION_MODULES'] = {
             'easy_thumbnails': 'easy_thumbnails.south_migrations',
         }
+    if extra.get('FILER_IMAGE_MODEL', False):
+        defaults['INSTALLED_APPS'].append('filer.test_utils.custom_image')
 
     defaults.update(extra)
     settings.configure(**defaults)
