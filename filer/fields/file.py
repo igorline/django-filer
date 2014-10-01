@@ -90,14 +90,15 @@ class AdminFileWidget(ForeignKeyRawIdWidget):
 class AdminFileFormField(forms.ModelChoiceField):
     widget = AdminFileWidget
 
-    def __init__(self, rel, queryset, to_field_name, *args, **kwargs):
+    def __init__(self, rel, queryset, to_field_name, limit_choices_to = None, *args, **kwargs):
         self.rel = rel
         self.queryset = queryset
         self.to_field_name = to_field_name
         self.max_value = None
         self.min_value = None
+        self.limit_choices_to = limit_choices_to
         other_widget = kwargs.pop('widget', None)
-        super(AdminFileFormField, self).__init__(self, widget=self.widget(rel, site), *args, **kwargs)
+        forms.Field.__init__(self, widget=self.widget(rel, site), *args, **kwargs)
 
     def widget_attrs(self, widget):
         widget.required = self.required
