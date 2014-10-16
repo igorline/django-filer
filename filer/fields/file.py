@@ -90,7 +90,7 @@ class AdminFileWidget(ForeignKeyRawIdWidget):
 class AdminFileFormField(forms.ModelChoiceField):
     widget = AdminFileWidget
 
-    def __init__(self, rel, queryset, to_field_name, *args, **kwargs):
+    def __init__(self, rel, queryset, to_field_name, limit_choices_to = None, *args, **kwargs):
         self.rel = rel
         self.queryset = queryset
         self.to_field_name = to_field_name

@@ -11,6 +11,7 @@ class ImageAdminForm(forms.ModelForm):
         max_length=64, required=False,
         label=_('Subject location'),
         help_text=_('Location of the main subject of the scene.'))
+    original = ""
 
     def sidebar_image_ratio(self):
         if self.instance:
@@ -22,6 +23,9 @@ class ImageAdminForm(forms.ModelForm):
             return '%.6F' % self.instance.sidebar_image_ratio()
         else:
             return ''
+
+    def __unicode__(self):
+        return ''
 
     class Meta:
         model = Image
